@@ -77,3 +77,54 @@ You may log back into the service at any time.
 
 [vs-code]: https://code.visualstudio.com/
 [base-path]: https://c.ai.ansible.redhat.com/
+
+PYTHON DRIVERS
+The Ansible Lightspeed extension for VS Code requires that Python 3.11.5 be activated as part of the workspace. Look for a Python tile adjacent to the Ansible tile along the bottom-right corner of the VS Code interface. If it is not set, click the tile and select Python 3.11.5 64-bit.
+
+Click the gold-colored Select python environment button at the bottom-right of the interface.
+![](assets/2024-01-03-17-31-23.png)
+
+
+
+From the console at the top of the VS Code environment, select the recommended Python 3.11.5 64-bit option and hit Return to confirm.
+
+
+![](assets/2024-01-03-17-31-29.png)
+
+Inspect the bottom-right of the interface again to confirm that the Python library has been set.
+
+![](assets/2024-01-03-17-31-40.png)
+
+
+If you continue to receive errors messages about Ansible-lint is not available or Command failed: ... you can safely ignore those warnings. Click the X icon next to the pop-up to dismiss the messages.
+
+
+![](assets/2024-01-03-17-31-48.png)
+
+ 
+## Step 1: Set up a Python Virtual Environment
+First, open a terminal or command prompt and navigate to the directory where you want to create your project. Then, create a virtual environment to isolate the project dependencies.
+
+For macOS and Linux:
+```
+python3 -m .venv .venv
+```
+then
+```
+source .venv/bin/activate
+```
+For Windows:
+```
+python -m venv .venv
+```
+then
+```
+.venv\Scripts\activate
+```
+
+then
+
+```
+pip install ansible-creator
+
+```

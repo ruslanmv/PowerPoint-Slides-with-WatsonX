@@ -13,7 +13,7 @@ class PptCodeGenerator(Generator):
             Write the python code in a structured way."""
 
     def __init__(self):
-        super.__init__(ModelTypes.STARCODER)
+        super().__init__(ModelTypes.STARCODER)
 
     def generate_code(self, text):
         logging.info("Sending prompt for code")

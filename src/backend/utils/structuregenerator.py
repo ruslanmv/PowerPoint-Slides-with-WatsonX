@@ -14,7 +14,7 @@ class StructureGenerator(Generator):
             Write the powerpoint in a structured way."""
 
     def __init__(self):
-        super.__init__(ModelTypes.LLAMA_2_70B_CHAT)
+        super().__init__(ModelTypes.LLAMA_2_70B_CHAT)
 
     def generate_structure(self, text):
         logging.info("Sending prompt for structure")

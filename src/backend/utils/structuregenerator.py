@@ -1,4 +1,4 @@
-from generator import Generator
+from utils.generator import Generator
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 import requests
 import logging
@@ -13,7 +13,7 @@ class StructureGenerator(Generator):
             You cannot create false information. You cannot create false dates.
             Write the powerpoint in a structured way."""
 
-    def __init__():
+    def __init__(self):
         super.__init__(ModelTypes.LLAMA_2_70B_CHAT)
 
     def generate_structure(self, text):

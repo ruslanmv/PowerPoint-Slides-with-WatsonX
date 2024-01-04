@@ -1,2 +1,3 @@
 .venv/
 playbooks/infra/install_cockpit/demo_install_cockpit.yml
+.env

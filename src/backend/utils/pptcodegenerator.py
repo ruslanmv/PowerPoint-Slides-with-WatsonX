@@ -1,4 +1,4 @@
-from generator import Generator
+from utils.generator import Generator
 from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 import requests
 import logging
@@ -12,7 +12,7 @@ class PptCodeGenerator(Generator):
             You cannot create false information. You cannot create false dates.
             Write the python code in a structured way."""
 
-    def __init__():
+    def __init__(self):
         super.__init__(ModelTypes.STARCODER)
 
     def generate_code(self, text):

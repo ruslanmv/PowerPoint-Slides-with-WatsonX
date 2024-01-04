@@ -7,12 +7,14 @@ import logging
 class StructureGenerator(Generator):
 
     structure_prompt = f"""You are really good at writing and analyzing a meeting from its summary email.
-            Write the structure of a powerpoint presentation given the summary email.
-            Do not write any note. 
+            Write the structure of a powerpoint presentation given the summary email. 
             You have also to title and content of the slides. 
             You cannot create false information. You cannot create false dates.
-            Write the powerpoint in a structured way."""
-
+            Write the powerpoint in a structured way.
+            Enumerate each slide with Slide.:
+           
+            """
+# Finally, create a Python list that contains each slide.::
     def __init__(self):
         super().__init__(ModelTypes.LLAMA_2_70B_CHAT)
 

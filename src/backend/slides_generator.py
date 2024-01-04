@@ -1,16 +1,58 @@
 from utils.pptcodegenerator import PptCodeGenerator
+from utils.pptcodegenerator import extract_slides
 from utils.structuregenerator import StructureGenerator
+import os
+from io import StringIO
+import sys
+def save_code_to_file(code, filename="./tmp/presentation.py"):
+    with open(filename, "w") as file:
+        file.write(code)
+      
+def compile_code(code):
+    # Save the original stdout
+    original_stdout = sys.stdout
+    # Redirect stdout to a StringIO object
+    sys.stdout = buffer = StringIO()
+    try:
+        # Execute the generated code
+        exec(code)
+    except Exception as e:
+        print(f"Error executing generated code: {e}")
+    finally:
+        # Restore the original stdout
+        sys.stdout = original_stdout
 
+    return buffer.getvalue()
 
 def main(input):
     structure_gen = StructureGenerator()
     ppt_gen = PptCodeGenerator()
-
-    # This is the meeting summary
-    #text = "meeting_email"
-    text=input
+    text = input
     structure = structure_gen.generate_structure(text)
-    code = ppt_gen.generate_code(structure)
+    #print("Generated Struture:", structure)
+
+    slides = extract_slides(structure)
+    print("Generated slides:", slides)
+    number_slides=len(slides)
+    for n in range(number_slides):
+        print("Creating the code for slide number: ", n )
+        slide=slides[n]
+        options=""
+        code = ppt_gen.generate_code(slide,options)
+        print("Code Generated:", code)
+        print(code)
+        # Save the generated code to slide.py
+        save_code_to_file(code, "./tmp/slide_{}.py".format(n))
+        print("The generated code has been saved to slide_{}.py".format(n))    
+        # Compile and run the generated code
+        output = compile_code(code)
+        print("Output:\n", output)
+
+        # Check if the slide.pptx file was created
+        if os.path.exists(f"slide_{n}.pptx"):
+            print(f"slide_{n} was created successfully.")
+        else:
+            print(f"Failed to create slide_{n}.pptx")
 
 test='''
 Subject: Summary of Meeting - Financial Results and Strategies

@@ -26,6 +26,6 @@ then
 then
 
 ```
-pip install ansible-creator ibm-watson python-dotenv pandas ibm-cloud-sdk-core ibm-watson-machine-learning
+pip install ansible-creator  ibm-watson-machine-learning python-dotenv
 
 ```

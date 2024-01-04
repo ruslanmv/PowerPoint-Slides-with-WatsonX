@@ -6,6 +6,7 @@ import logging
 
 class PptCodeGenerator(Generator):
 
+    # TODO: Change the prompt
     code_prompt = f"""You are really good at writing python code and using the library python-pptx.
             Write the code in python to create the powerpoint presentation given its structure.
             Do not write any note. 

@@ -19,7 +19,7 @@ class StructureGenerator(Generator):
     def generate_structure(self, text):
         logging.info("Sending prompt for structure")
 
-        inst_prompt = f"""<s>[INST] <<SYS>>  
+        inst_prompt = f"""[INST] <<SYS>>  
         {StructureGenerator.structure_prompt}
         <</SYS>>
         Create the powerpoint from the following transcripts: {text}

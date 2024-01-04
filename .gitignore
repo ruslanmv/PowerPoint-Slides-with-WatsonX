@@ -6,3 +6,7 @@ slide_*
 *.pyc
 *.pyc
 src/backend/utils/__pycache__/structuregenerator.cpython-310.pyc
+src/backend/utils/__pycache__/generator.cpython-310.pyc
+src/backend/utils/__pycache__/generator.cpython-310.pyc
+src/backend/utils/__pycache__/structuregenerator.cpython-310.pyc
+src/backend/utils/__pycache__/pptcodegenerator.cpython-310.pyc

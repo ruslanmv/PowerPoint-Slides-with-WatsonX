@@ -3,7 +3,6 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 import requests
 import logging
 
-
 class StructureGenerator(Generator):
 
     structure_prompt = f"""You are really good at writing and analyzing a meeting from its summary email.
@@ -20,7 +19,6 @@ class StructureGenerator(Generator):
 
     def generate_structure(self, text):
         logging.info("Sending prompt for structure")
-
         inst_prompt = f"""<s>[INST] <<SYS>>  
         {StructureGenerator.structure_prompt}
         <</SYS>>

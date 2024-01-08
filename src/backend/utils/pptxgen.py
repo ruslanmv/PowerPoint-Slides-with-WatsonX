@@ -21,7 +21,7 @@ Answer only with  Python code.
 
         prefix_code=f"""from pptx import Presentation
 from pptx.util import Inches
-from pptx.enum.shapes import MSO_SHAPE
+
 prs = Presentation()    
 #Slide {n} :
 slide = prs.slides.add_slide("""        

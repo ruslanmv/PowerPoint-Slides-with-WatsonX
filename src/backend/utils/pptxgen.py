@@ -18,11 +18,13 @@ Answer only with  Python code.
         with open('documentation.txt', 'r') as file:
             documentation = file.read()
 
-        prefix_code=f"""
-from pptx import Presentation
-prs = Presentation()
-#Slide {n} : 
-slide = prs.slides.add_slide("""
+
+        prefix_code=f"""from pptx import Presentation
+from pptx.util import Inches
+from pptx.enum.shapes import MSO_SHAPE
+prs = Presentation()    
+#Slide {n} :
+slide = prs.slides.add_slide("""        
         suffix_code=f"""prs.save('slide_{n}.pptx')"""        
         logging.info("Sending prompt for code")
         inst_prompt = f"""<s>[INST] <<SYS>>  
@@ -30,6 +32,7 @@ slide = prs.slides.add_slide("""
         You are doing the slide number {n}.
         You can start the code with:{prefix_code}.
         and end the code with:{suffix_code}.
+        Give a complete python code ready to run.
         <</SYS>> 
         Create the python code given this text: {text}
         Documentation:{documentation}

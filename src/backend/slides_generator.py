@@ -1,6 +1,7 @@
 from utils.pptcodegenerator import PptCodeGenerator
 from utils.pptcodegenerator import extract_slides
 from utils.structuregenerator import StructureGenerator
+from utils.pptxgen import pptxgenerator
 import os
 from io import StringIO
 import sys
@@ -26,20 +27,22 @@ def compile_code(code):
 
 def main(input):
     structure_gen = StructureGenerator()
-    ppt_gen = PptCodeGenerator()
+    #ppt_gen = PptCodeGenerator()
+    ppt_gen = pptxgenerator()
     text = input
     structure = structure_gen.generate_structure(text)
     #print("Generated Struture:", structure)
 
     slides = extract_slides(structure)
-    print("Generated slides:", slides)
+    #print("Generated slides:", slides)
+    print("Generated strucure done")
     number_slides=len(slides)
     for n in range(number_slides):
         print("Creating the code for slide number: ", n+1 )
         slide=slides[n]
         code = ppt_gen.generate_code(slide,n+1)
         print("Code Generated:", code)
-        print(code)
+        #print(code)
         # Save the generated code to slide.py
         save_code_to_file(code, "./tmp/slide_{}.py".format(n))
         print("The generated code has been saved to slide_{}.py".format(n))    

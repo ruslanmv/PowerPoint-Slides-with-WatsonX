@@ -2,4 +2,4 @@
 playbooks/infra/install_cockpit/demo_install_cockpit.yml
 .env
 __pycache__/
-.pyc
+*.pyc

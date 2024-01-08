@@ -5,10 +5,13 @@ from utils.pptxgen import pptxgenerator
 import os
 from io import StringIO
 import sys
+
+
 def save_code_to_file(code, filename="./tmp/presentation.py"):
     with open(filename, "w") as file:
         file.write(code)
-      
+
+
 def compile_code(code):
     # Save the original stdout
     original_stdout = sys.stdout
@@ -25,27 +28,41 @@ def compile_code(code):
 
     return buffer.getvalue()
 
+
 def main(input):
     structure_gen = StructureGenerator()
-    #ppt_gen = PptCodeGenerator()
+    # ppt_gen = PptCodeGenerator()
     ppt_gen = pptxgenerator()
     text = input
     structure = structure_gen.generate_structure(text)
-    #print("Generated Struture:", structure)
+    # print("Generated Struture:", structure)
 
+    code = ppt_gen.generate_code(structure)
+
+    save_code_to_file(code, "./tmp/presentation.py")
+
+    output = compile_code(code)
+    print("Output:\n", output)
+
+    if os.path.exists(f".pptx"):
+        print(f"presentation was created successfully.")
+    else:
+        print(f"Failed to create presentation.pptx")
+
+    """
     slides = extract_slides(structure)
-    #print("Generated slides:", slides)
+    # print("Generated slides:", slides)
     print("Generated strucure done")
-    number_slides=len(slides)
+    number_slides = len(slides)
     for n in range(number_slides):
         print("Creating the code for slide number: ", n)
-        slide=slides[n]
-        code = ppt_gen.generate_code(slide,n)
+        slide = slides[n]
+        code = ppt_gen.generate_code(slide, n)
         print("Code Generated:", code)
-        #print(code)
+        # print(code)
         # Save the generated code to slide.py
         save_code_to_file(code, "./tmp/slide_{}.py".format(n))
-        print("The generated code has been saved to slide_{}.py".format(n))    
+        print("The generated code has been saved to slide_{}.py".format(n))
         # Compile and run the generated code
         output = compile_code(code)
         print("Output:\n", output)
@@ -55,8 +72,10 @@ def main(input):
             print(f"slide_{n} was created successfully.")
         else:
             print(f"Failed to create slide_{n}.pptx")
+    """
 
-test='''
+
+test = '''
 Subject: Summary of Meeting - Financial Results and Strategies
 
 Dear Team,
@@ -71,5 +90,5 @@ Best regards,
 '''
 
 if __name__ == "__main__":
-    text=test
+    text = test
     main(text)

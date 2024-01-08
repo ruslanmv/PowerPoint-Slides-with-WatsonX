@@ -14,7 +14,7 @@ class Generator():
 
         parameters = {
             GenParams.DECODING_METHOD: "greedy",
-            GenParams.MAX_NEW_TOKENS: 1000,
+            GenParams.MAX_NEW_TOKENS: 3300,
             GenParams.STOP_SEQUENCES: ["\n\n\n"]
         }
         project_id = os.getenv("PROJECT_ID", None)

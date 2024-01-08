@@ -3,36 +3,42 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 import requests
 import logging
 
+
 class pptxgenerator(Generator):
+
     code_prompt = f"""You are really good at writing python code and using the library python-pptx.
-Write the code in python to create a single slide for powerpoint presentation given the text.
-Do not add notes and skip comments on the results. 
-All the images added have the name image.png.
-Do not add comments of the answer.
-Do not explain the code.
-No comments or any text add to the answer only python code. 
-            """          
+        Write the code in python to create a powerpoint presentation given the text.
+        Do not add notes and skip comments on the results. 
+        All the images added have the name image.png.
+        Do not add comments of the answer.
+        Do not explain the code.
+        No comments or any text add to the answer only python code.
+        Make the powerpoint slides with a bullet point list.
+        Make sure to use the content given by the structure of the powerpoint. The content is marked by *.
+        """
+
     def __init__(self):
         super().__init__(ModelTypes.LLAMA_2_70B_CHAT)
-    def generate_code(self, text,n):
+
+    def generate_code(self, text, n=1):
         with open('documentation.txt', 'r') as file:
             documentation = file.read()
-        if n==0 :
-            options="Create the first page of presentation." 
+        if n == 0:
+            options = "Create the first page of presentation."
         else:
-            options=""   
+            options = ""
 
+        prefix_code = f"""from pptx import Presentation
+            from pptx.util import Inches
+            prs = Presentation()    
+            slide = prs.slides.add_slide("""
 
-        prefix_code=f"""from pptx import Presentation
-from pptx.util import Inches
-prs = Presentation()    
-#Slide {n} :
-slide = prs.slides.add_slide("""        
-        suffix_code=f"""prs.save('slide_{n}.pptx')"""        
+        suffix_code = f"""prs.save('presentation.pptx')"""
+
         logging.info("Sending prompt for code")
+
         inst_prompt = f"""<s>[INST] <<SYS>>  
         {pptxgenerator.code_prompt}
-
         <</SYS>>
         You are doing the slide number {n}.
         You can start the code with:{prefix_code}.
@@ -43,15 +49,15 @@ slide = prs.slides.add_slide("""
         Documentation:{documentation}
         Answer only with Python code:
         """
-        
-        print("Prompt:",inst_prompt)
+
+        print("Prompt:", inst_prompt)
         result = self.llm_model.generate(
             inst_prompt)['results'][0]['generated_text']
         logging.info("Obtained result")
-        return result
-    
 
-    
+        return result
+
+
 def extract_slides(text):
     slides = []
     lines = text.split("\n")
@@ -68,5 +74,5 @@ def extract_slides(text):
 
     if current_slide:
         slides.append(current_slide)
-    
+
     return slides

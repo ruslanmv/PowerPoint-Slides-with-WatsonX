@@ -38,9 +38,9 @@ def main(input):
     print("Generated strucure done")
     number_slides=len(slides)
     for n in range(number_slides):
-        print("Creating the code for slide number: ", n+1 )
+        print("Creating the code for slide number: ", n)
         slide=slides[n]
-        code = ppt_gen.generate_code(slide,n+1)
+        code = ppt_gen.generate_code(slide,n)
         print("Code Generated:", code)
         #print(code)
         # Save the generated code to slide.py

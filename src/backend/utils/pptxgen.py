@@ -10,18 +10,21 @@ Do not add notes and skip comments on the results.
 All the images added have the name image.png.
 Do not add comments of the answer.
 Do not explain the code.
-Answer only with  Python code.
+No comments or any text add to the answer only python code. 
             """          
     def __init__(self):
         super().__init__(ModelTypes.LLAMA_2_70B_CHAT)
     def generate_code(self, text,n):
         with open('documentation.txt', 'r') as file:
             documentation = file.read()
+        if n==0 :
+            options="Create the first page of presentation." 
+        else:
+            options=""   
 
 
         prefix_code=f"""from pptx import Presentation
 from pptx.util import Inches
-
 prs = Presentation()    
 #Slide {n} :
 slide = prs.slides.add_slide("""        
@@ -29,15 +32,17 @@ slide = prs.slides.add_slide("""
         logging.info("Sending prompt for code")
         inst_prompt = f"""<s>[INST] <<SYS>>  
         {pptxgenerator.code_prompt}
+
+        <</SYS>>
         You are doing the slide number {n}.
         You can start the code with:{prefix_code}.
         and end the code with:{suffix_code}.
-        Give a complete python code ready to run.
-        <</SYS>> 
+        {options}
         Create the python code given this text: {text}
-        Documentation:{documentation}
         [/INST]
+        Answer only with Python code:
         """
+        #Documentation:{documentation}
         print("Prompt:",inst_prompt)
         result = self.llm_model.generate(
             inst_prompt)['results'][0]['generated_text']

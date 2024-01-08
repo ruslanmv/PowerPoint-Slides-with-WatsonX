@@ -40,9 +40,10 @@ slide = prs.slides.add_slide("""
         {options}
         Create the python code given this text: {text}
         [/INST]
+        Documentation:{documentation}
         Answer only with Python code:
         """
-        #Documentation:{documentation}
+        
         print("Prompt:",inst_prompt)
         result = self.llm_model.generate(
             inst_prompt)['results'][0]['generated_text']

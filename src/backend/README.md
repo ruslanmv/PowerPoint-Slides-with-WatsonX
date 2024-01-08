@@ -26,6 +26,6 @@ then
 then
 
 ```
-pip install ansible-creator  ibm-watson-machine-learning python-dotenv
+pip install ansible-creator  ibm-watson-machine-learning python-dotenv python-pptx
 
 ```

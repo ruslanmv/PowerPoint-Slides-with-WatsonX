@@ -1,7 +1,8 @@
 .venv/
 playbooks/infra/install_cockpit/demo_install_cockpit.yml
 .env
-__pycache__/
+**/__pycache__/
 slide_*
 *.pyc
 *.pyc
+

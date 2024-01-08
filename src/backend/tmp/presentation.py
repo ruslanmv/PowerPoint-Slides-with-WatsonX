@@ -216,10 +216,6 @@ title_shape.text = "Closing"
 tf = body_shape.text_frame
 tf.text = "Final thank you and closing remarks by Giacomo"
 
-p = tf.add_paragraph()
-p.text = "Contact information for further questions or information"
-p.level = 1
-
 prs.save('presentation.pptx')
 
 

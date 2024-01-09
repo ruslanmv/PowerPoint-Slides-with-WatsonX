@@ -6,3 +6,5 @@ slide_*
 *.pyc
 *.pyc
 
+src/backend/presentation.pptx
+src/backend/tmp/presentation.py

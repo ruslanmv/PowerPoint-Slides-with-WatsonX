@@ -42,9 +42,9 @@ def main(input):
     save_code_to_file(code, "./tmp/presentation.py")
 
     output = compile_code(code)
-    print("Output:\n", output)
+    #print("Output:\n", output)
 
-    if os.path.exists(f".pptx"):
+    if os.path.exists(f"presentation.pptx"):
         print(f"presentation was created successfully.")
     else:
         print(f"Failed to create presentation.pptx")

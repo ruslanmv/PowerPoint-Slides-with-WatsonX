@@ -22,4 +22,6 @@
    yarn add sass@1.63.6
    ```
 
-Now the library and the application is installed correctly
+Now the library and the application is installed correctly.
+
+Documentation of Carbon Design Library is [here](https://react.carbondesignsystem.com/?path=/docs/components-fileuploader--overview).

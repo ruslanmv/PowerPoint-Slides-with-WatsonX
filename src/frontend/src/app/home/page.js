@@ -1,33 +1,31 @@
-import { Button, Theme } from '@carbon/react';
-import {
-  FileUploader,
-  FileUploaderButton,
-  FileUploaderDropContainer,
-  FileUploaderItem,
-  FileUploaderSkeleton,
-} from '@carbon/react';
+import { Theme, FileUploader, Heading, Stack } from '@carbon/react';
 
 `use client`;
 
 export default function LandingPage() {
   return (
-    <Theme theme="g100">
-      <section className="theme-section">
+    <Stack gap={10} orientation="vertical">
+      <div>
+        <Heading>Generate Slides with WatsonX</Heading>
+        Upload a summary email from a meeting and generate a presentation with
+        the key point of the meeting.
+      </div>
+
+      <div className="uploader">
         <FileUploader
-          labelTitle="Upload files"
-          labelDescription="Max file size is 500mb. Only .txt files are supported."
+          labelTitle="Upload a summary email"
+          labelDescription="Only .txt files are supported."
           buttonLabel="Add file"
           buttonKind="primary"
-          size="md"
           filenameStatus="edit"
           accept={['.txt']}
-          multiple={true}
+          multiple={false}
           disabled={false}
           iconDescription="Delete file"
           name=""
           style={{ display: 'flex', alignItems: 'center' }}
         />
-      </section>
-    </Theme>
+      </div>
+    </Stack>
   );
 }

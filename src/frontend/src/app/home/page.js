@@ -36,5 +36,10 @@ export default function LandingPage() {
 }
 
 function handleChange(event) {
-  console.log(event.target.file);
+  console.log(event.target.files[0]);
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const text = e.target.result;
+  };
+  reader.readAsText(event.target.files[0]);
 }

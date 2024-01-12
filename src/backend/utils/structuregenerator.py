@@ -3,6 +3,7 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 import requests
 import logging
 
+
 class StructureGenerator(Generator):
 
     structure_prompt = f"""You are really good at writing and analyzing a meeting from its summary email.
@@ -13,7 +14,8 @@ class StructureGenerator(Generator):
             Enumerate each slide with Slide.:
            
             """
-# Finally, create a Python list that contains each slide.::
+
+    # Finally, create a Python list that contains each slide.::
     def __init__(self):
         super().__init__(ModelTypes.LLAMA_2_70B_CHAT)
 

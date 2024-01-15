@@ -40,6 +40,18 @@ function handleChange(event) {
   const reader = new FileReader();
   reader.onload = async (e) => {
     const text = e.target.result;
+    var jsonData = {
+      text: text,
+    };
+    let url = 'http://localhost:5000';
+    fetch(url, {
+      method: 'POST',
+      cache: 'no-cache',
+      body: JSON.stringify(jsonData),
+    })
+      .then((res) => res.json())
+      .then((response) => console.log('Success: ', response))
+      .catch((error) => console.error('Error: ', error));
   };
   reader.readAsText(event.target.files[0]);
 }
